@@ -1,3 +1,79 @@
 Test
 test2
 test3
+@issue:LICE-2840
+Feature: Make zoom calls pop up on android
+
+  Background:
+    Given Alice uses TWA "Mobile application"
+    And Alice goes to leverice client
+    And Alice creates workspace "First workspace"
+    And Alice invites Bob to the workspace with email
+    And Bob follows invitation link from email
+    And Bob switches to channel "Miscellaneous"
+
+  @Manual
+  @Manual:passed
+  @Mobile
+  @MobileOnly
+  @Manual:New
+  Scenario: Zoom answer call in the active twa window
+    When Bob call Alice
+    Then Alice sees active call window
+    And Alice hear an incoming call sound
+    And Alice press "answer" button
+    And Alice start connect to the meeting
+
+  @Manual
+  @Manual:passed
+  @Mobile
+  @MobileOnly
+  @Manual:New
+  Scenario: Zoom decline call in the active twa window
+    When Bob call Alice
+    Then Alice sees active call window
+    And Alice hear an incoming call sound
+    And Alice press "decline" button
+    And Alice doesen't see incoming call window
+    And Alice doesen't hear incoming call sound
+    And Alice see channel where she was before
+
+  @Manual
+  @Manual:passed
+  @Mobile
+  @MobileOnly
+  @Manual:New
+  Scenario: Zoom call in unactive twa window
+    When Alice switches too the chrome
+    Then Bob call Alice
+    And Alice sees active call window
+    And Alice hear an incoming call sound
+    And Alice press "decline" button
+    And Alice doesen't see incoming call window
+    And Alice doesen't hear incoming call sound
+    And Alice see chrome app where she was before
+
+  @Manual
+  @Manual:passed
+  @Mobile
+  @MobileOnly
+  @Manual:New
+  Scenario: Zoom call when screen is locked
+    When alice lock screen
+    Then Bob call Alice
+    And Alice sees active call window
+    And Alice hear an incoming call sound
+
+  @Manual
+  @Manual:passed
+  @Mobile
+  @MobileOnly
+  @Manual:New
+  Scenario: Zoom call when when user have slow connection
+    When Alice have slow connection
+    Then Bob call Alice
+    And Alice sees active call window
+    And Alice hear an incoming call sound
+
+
+
