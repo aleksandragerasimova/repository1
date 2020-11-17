@@ -78,3 +78,8 @@ Feature: Make zoom calls pop up on android
 
 
 dfdfdfd
+Scenario: Zoom call when when user have slow connection
+    When Alice have slow connection
+    Then Bob call Alice
+    And Alice sees active call window
+    And Alice hear an incoming call sound
