@@ -2,3 +2,6 @@ Test
 test2
 test3
 test 4 to a new branch
+change1
+change2
+change3
